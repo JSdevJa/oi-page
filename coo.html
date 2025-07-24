@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How Babies Are Made - Full Animated Explanation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #2a7ae2;
+    }
+    p {
+      margin-bottom: 1em;
+      font-size: 1.1em;
+      text-align: left;
+    }
+    .note {
+      font-style: italic;
+      color: #555;
+      font-size: 0.9em;
+      background: #e0f0ff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    /* Animation container */
+    .animation-container {
+      position: relative;
+      width: 320px;
+      height: 180px;
+      margin: 30px auto 40px auto;
+      border: 2px solid #2a7ae2;
+      border-radius: 10px;
+      background: #d0e7ff;
+      overflow: hidden;
+    }
+
+    /* The egg */
+    .egg {
+      width: 80px;
+      height: 100px;
+      background: #fff3e0;
+      border: 3px solid #f4a261;
+      border-radius: 50% / 60%;
+      position: absolute;
+      right: 20px;
+      top: 40px;
+      box-shadow: inset -5px 5px 15px #f6c89f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #f4a261;
+      font-size: 18px;
+      user-select: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    /* The sperm */
+    .sperm {
+      width: 40px;
+      height: 20px;
+      background: #87ceeb;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      position: absolute;
+      left: 20px;
+      top: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #0366d6;
+      font-size: 14px;
+      user-select: none;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+    .sperm::after {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: 8px;
+      width: 25px;
+      height: 4px;
+      background: #87ceeb;
+      border-radius: 10px;
+      animation: tail-wave 0.5s ease-in-out infinite;
+    }
+
+    /* Fertilized egg style */
+    .fertilized {
+      background: #f9e79f;
+      border-color: #f39c12;
+      color: #b9770e;
+      box-shadow: 0 0 15px 5px #f1c40f88;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    /* Baby growing circle */
+    .baby {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 60px;
+      height: 60px;
+      background: #f9c0c0;
+      border-radius: 50%;
+      box-shadow: 0 0 15px 5px #e74c3c88;
+      transform: translate(-50%, -50%) scale(0);
+      animation: grow 4s ease forwards;
+      font-weight: bold;
+      color: #c0392b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      font-size: 18px;
+      opacity: 0;
+    }
+
+    /* Hug humans container */
+    .hug-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Individual human figure */
+    .human {
+      position: relative;
+      width: 50px;
+      height: 100px;
+      background: #ffb6b9;
+      border-radius: 25px 25px 15px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .human.head {
+      width: 40px;
+      height: 40px;
+      background: #f7d6d9;
+      border-radius: 50%;
+      margin-top: 5px;
+      border: 2px solid #d48b8e;
+      box-shadow: inset 0 3px 5px #f2e2e4;
+    }
+    .human.body {
+      flex: 1;
+      width: 100%;
+      background: #ff8f94;
+      border-radius: 20px 20px 15px 15px;
+      margin-top: 5px;
+      position: relative;
+    }
+
+    /* Arms hugging effect */
+    .human-left .arm-right,
+    .human-right .arm-left {
+      position: absolute;
+      top: 30px;
+      width: 15px;
+      height: 40px;
+      background: #ff8f94;
+      border-radius: 15px;
+      transform-origin: top center;
+    }
+    .human-left .arm-right {
+      right: -10px;
+      transform: rotate(30deg);
+    }
+    .human-right .arm-left {
+      left: -10px;
+      transform: rotate(-30deg);
+    }
+
+    /* Legs */
+    .leg {
+      width: 20px;
+      height: 40px;
+      background: #ff8f94;
+      border-radius: 15px;
+      margin: 4px 5px 8px 5px;
+    }
+    .legs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 5px;
+    }
+
+    .hug-text {
+      position: absolute;
+      bottom: -30px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: #ff6f61;
+      user-select: none;
+    }
+
+    /* Animations */
+    @keyframes swim {
+      0% { left: 20px; top: 80px; opacity: 1; }
+      100% { left: 190px; top: 65px; opacity: 1; }
+    }
+    @keyframes tail-wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(15deg); }
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 15px 5px #f1c40f88; }
+      100% { box-shadow: 0 0 25px 10px #f39c1288; }
+    }
+    @keyframes grow {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>How Babies Are Made</h1>
+  <p>When a mom and dad want to have a baby, a tiny cell from the dad, called a <strong>sperm</strong>, meets a tiny cell from the mom, called an <strong>egg</strong>.</p>
+  <p>This usually happens when adults share a special kind of hug called <strong>sex</strong>, where their bodies come very close together.</p>
+  <p>Inside the mom’s body, the sperm and egg join to start making a baby. The baby grows inside the mom for about nine months before being born.</p>
+
+  <div class="animation-container" aria-label="Animation showing special hug, sperm moving towards egg, fertilization, and baby growing">
+
+    <div class="hug-container" id="hug" aria-label="Special hug between adults">
+      <div class="human human-left" aria-hidden="true">
+        <div class="head"></div>
+        <div class="body">
+          <div class="arm-right"></div>
+          <div class="legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="human human-right" aria-hidden="true">
+        <div class="head"></div>
+        <div class="body">
+          <div class="arm-left"></div>
+          <div class="legs">
+            <div class="leg"></div>
+            <div class="leg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hug-text">Special Hug</div>
+    </div>
+
+    <div class="egg" id="egg" aria-label="Egg cell">Egg</div>
+    <div class="sperm" id="sperm" aria-label="Sperm cell">Sperm</div>
+    <div class="baby" id="baby" aria-label="Growing baby">Baby</div>
+  </div>
+
+  <p>It's important to talk to trusted adults if you have questions or want to learn more.</p>
+  <div class="note">
+    Remember: This is a natural part of life, and it’s always okay to ask questions and learn!
+  </div>
+
+  <script>
+    const hug = document.getElementById('hug');
+    const sperm = document.getElementById('sperm');
+    const egg = document.getElementById('egg');
+    const baby = document.getElementById('baby');
+
+    // Step 1: Show hug for 3 seconds, then fade it out and start sperm animation
+    setTimeout(() => {
+      hug.style.opacity = '0';
+
+      // Show sperm and start swim animation
+      sperm.style.opacity = '1';
+      sperm.style.animation = 'swim 6s linear forwards';
+
+    }, 3000);
+
+    // After sperm finishes swimming, show fertilization then baby growth
+    sperm.addEventListener('animationend', () => {
+      // Hide sperm
+      sperm.style.opacity = '0';
+
+      // Change egg style to fertilized
+      egg.classList.add('fertilized');
+      egg.textContent = 'Fertilized Egg';
+
+      // After 2 seconds, hide egg and show baby growing
+      setTimeout(() => {
+        egg.style.opacity = '0';
+        baby.style.opacity = '1';
+        baby.style.animation = 'grow 4s ease forwards';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+authtoken: 2zF8p38zFnMFdeFJ6fUOdF4I4gm_3xbPyuhyxGvy8kfsKvhVP
+
+tunnels:
+  webapp:
+    addr: 3000
+    proto: http
+    # Optional: custom subdomain (for Pro accounts)
+    # subdomain: mywebapp
+    # Optional: Basic authentication
+    # auth: "user:password"
+    # Optional: custom headers
+    # inspect: true
+    # host_header: rewrite
